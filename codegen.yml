@@ -1,0 +1,19 @@
+overwrite: true
+schema: https://sso-api-dev.identix.space/graphql
+generates:
+    src/generated/gql.ts:
+        documents: 'src/graphql/*.graphql'
+        plugins:
+            - typescript
+            - typescript-operations
+            - typescript-graphql-request
+            - add:
+                  content:
+                      - "/* eslint-disable */"
+                      - "// @ts-nocheck"
+    src/generated/schema.graphql:
+        plugins:
+            - schema-ast
+        config:
+            includeDirectives: true
+            sort: true

@@ -1,0 +1,35 @@
+query Echo($text: String!) {
+    echo(text: $text)
+}
+
+mutation GenerateDidOtc($did: String!) {
+    generateDidOtc(did: $did)
+}
+
+mutation LoginViaDid($did: String!,$otcSignatureHex: String!) {
+    loginViaDID(did: $did,otcSignatureHex: $otcSignatureHex){
+        token
+        account {
+            id
+            did
+            email
+            status
+            isClient
+            sessions {
+                id
+                createdAt
+                ipAddr
+                expiresAt
+                userAgent {
+                    ua
+                }
+            }
+        }
+    }
+}
+
+query WhoAmI {
+    whoami {
+        did
+    }
+}
